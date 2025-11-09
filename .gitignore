@@ -1,0 +1,9 @@
+# Ignore file logs
+*.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
+*shared.tfvars
+.token
+.txt
