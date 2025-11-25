@@ -1,0 +1,23 @@
+Proyecto: “Infra mínima personal”
+
+Crea un pequeño proyecto con:
+
+1 proveedor (por ejemplo AWS, o local si no quieres usar cloud real)
+2–3 recursos simples, por ejemplo:
+aws_s3_bucket
+aws_instance
+o usando local_file si no quieres tocar cloud.
+Requisitos:
+
+Definir al menos:
+2 variables (variables.tf)
+2 outputs (outputs.tf)
+1 locals (aunque sea simple)
+
+Bonus (ternaria): Haz que el instance_type sea:
+t2.small si environment == "prod"
+t2.micro en cualquier otro caso
+
+Que todo pase:
+terraform fmt
+terraform validate

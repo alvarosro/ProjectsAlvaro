@@ -6,4 +6,5 @@ terraform.tfstate.backup
 terraform.tfvars
 *shared.tfvars
 .token
-.txt
+.txt*
+.ini*

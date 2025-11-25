@@ -27,7 +27,7 @@ output "list_2" {
 
 #Patrón 3: Lista a map.
 
-# Input: lista
+# Input: listagit config --global credential.helper osxkeychain
 # Output: map con índice
 locals {
   fruits = ["apple", "banana", "orange"]
@@ -80,8 +80,18 @@ locals {
   }
   
   small_servers = {
-    # Por cada clave (name) y valor (key) en el mapa local.all_servers.
-    # Crea una entrada en el nuevo mapa donde la clave es name y el valor es key.
+ /*
+Recorre el mapa: Por cada entrada en local.all_servers:
+name = la clave ("web", "db", "cache")
+key = el valor (el objeto { size = "small" } o { size = "large" })
+Condición: Solo incluye la entrada SI key.size == "small" Crea nueva entrada: name => key significa:
+La clave del nuevo mapa será name
+El valor del nuevo mapa será key
+¿Qué significa =>?
+Es el operador para crear pares clave-valor en un mapa
+clave => valor
+ */
+  
     for name, key in local.all_servers :
     name => key
     if key.size == "small"
