@@ -44,19 +44,27 @@ data "aws_ami" "amazon_linux" {
 
 locals {
   ami_id = data.aws_ami.amazon_linux.id
+  server_config = {
+    for name in var.servers : name => {
+      environment = var.environment
+      size = contains(["Appweb", "Ecomm"], name) ? "frontend" : "backend"
+    }
+  
+  }
 }
 resource "aws_instance" "servers" {
   // We can use for-each to iterate over the list of servers.
   // toset is used to convert the list to a set for iteration and to avoid duplicates.
   #for_each      = toset(var.servers)
   // Using count to create instances based on the length of the servers list.
-  for_each = toset(var.servers)
+  for_each = local.server_config
   ami           = local.ami_id
   instance_type = var.instance_type == "prod" ? "t2.small" : "t2.micro"
 
   tags = {
-    Name = "${var.environment}-${each.value}"
+    Name = "${var.environment}-${each.key}"
     Environment = var.environment
+    Role = each.value.size
   }
 }
 
