@@ -1,4 +1,0 @@
-Server Type: database
-Created at: 2025-11-09T19:45:00Z
-Port: 5432
-State : Active

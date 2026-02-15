@@ -1,4 +1,0 @@
-Server Type: cache
-Created at: 2025-11-09T19:45:00Z
-Port: 6379
-State : Active
